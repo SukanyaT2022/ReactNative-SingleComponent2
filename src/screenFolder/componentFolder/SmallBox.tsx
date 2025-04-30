@@ -14,6 +14,8 @@ interface singleBoxProp {
   priceProp: number;
   offerList: string[];
   imageProp: ImageSourcePropType;
+  changeBorderColorFunc: () => void;
+  selected?: boolean;
 }
 const SmallBox = ({
   titleprop,
@@ -21,12 +23,19 @@ const SmallBox = ({
   priceProp,
   offerList,
   imageProp,
+changeBorderColorFunc,
+selected = false,
 }: singleBoxProp) => {
+
+
   return (
     <View style={styles.main}>
+      <View style={styles.wrapTitleImage}>
       <Text style={styles.title}>{titleprop}</Text>
-      <Text style={styles.subtitle}>{subtitleProp}</Text>
       <Image source={imageProp} style={{width:50, height:50}}/>
+      </View>
+      <Text style={styles.subtitle}>{subtitleProp}</Text>
+     
       {offerList.map((item, index) => {
         return (
           <View style={styles.wrapIconText} key={index}>
@@ -38,11 +47,14 @@ const SmallBox = ({
 
       <View style={styles.wrapPriceBtn}>
         <Text style={styles.price}>
-          ${priceProp}
+          {priceProp}
           <Text style={{fontSize: 14}}> /rental</Text>
         </Text>
-        <TouchableOpacity style={styles.wrapIconAddTextBtn}>
-          <Icon name="rocket" size={25} color="#900" />
+        <TouchableOpacity
+        onPress={changeBorderColorFunc}
+        disabled={selected}
+        style={[styles.wrapIconAddTextBtn, selected && {backgroundColor:'orange'}]}>
+          <Icon name="rocket" size={25} color="#900"/>
           <Text style={styles.addText}>Add</Text>
         </TouchableOpacity>
       </View>
@@ -61,6 +73,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginVertical: 20,
   },
+  wrapTitleImage:{
+flexDirection:'row',
+justifyContent:'space-between',
+  },
   wrapIconText: {
     flexDirection: 'row',
     gap: 5,
@@ -69,6 +85,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'semibold',
+    flexWrap: 'wrap',
+    maxWidth: '80%',
   },
   subtitle: {
     fontSize: 17,
@@ -82,13 +100,21 @@ const styles = StyleSheet.create({
   wrapIconAddTextBtn: {
     flexDirection: 'row',
     gap: 5,
+borderWidth:2,
+borderRadius:30,
+paddingVertical:7,
+paddingHorizontal:12,
+backgroundColor:'black',
   },
   price: {
     fontSize: 22,
     fontWeight: 'semibold',
   },
   addText: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
+    color:'white',
+  
   },
+
 });

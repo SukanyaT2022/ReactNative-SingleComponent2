@@ -5,6 +5,10 @@ import SmallBox from './componentFolder/SmallBox';
 import {data} from './constantData/data';
 
 const Home = ({navigation}: any) => {
+const [borderColor, setBorderColor] = React.useState('green');
+// const [selected, setSelected] = React.useState("");
+const [selected, setSelected] = React.useState<string[]>([]);
+console.log(selected)
   return (
     <View>
       <Text>home</Text>
@@ -17,11 +21,18 @@ const Home = ({navigation}: any) => {
         renderItem={({item}: any) => (
           <SmallBox
             titleprop={item.title}
-            imageProp={item.Image}
+            imageProp={item.image}
             subtitleProp={item.subtitle}
             offerList={item.text}
             priceProp={item.price}
+            changeBorderColorFunc={() =>
+             setSelected(item.id)
+              
+            }
+            selected={selected === item.id}
+            
           />
+
         )}
       />
     </View>

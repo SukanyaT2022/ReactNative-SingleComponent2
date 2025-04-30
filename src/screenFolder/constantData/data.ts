@@ -10,7 +10,6 @@ interface ExtraServiceProp{
     recommendedTag?: string,
     price:string,
     id:string
-
 }
 
 export const data: ExtraServiceProp[] = [
