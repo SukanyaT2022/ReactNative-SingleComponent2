@@ -29,7 +29,7 @@ selected = false,
 
 
   return (
-    <View style={styles.main}>
+    <View style={[styles.main, selected && {borderColor: 'orange'}]}>
       <View style={styles.wrapTitleImage}>
       <Text style={styles.title}>{titleprop}</Text>
       <Image source={imageProp} style={{width:50, height:50}}/>
@@ -52,7 +52,7 @@ selected = false,
         </Text>
         <TouchableOpacity
         onPress={changeBorderColorFunc}
-        disabled={selected}
+        // disabled={selected}
         style={[styles.wrapIconAddTextBtn, selected && {backgroundColor:'orange'}]}>
           <Icon name="rocket" size={25} color="#900"/>
           <Text style={styles.addText}>Add</Text>
@@ -101,10 +101,12 @@ justifyContent:'space-between',
     flexDirection: 'row',
     gap: 5,
 borderWidth:2,
+borderColor:'green',
 borderRadius:30,
 paddingVertical:7,
 paddingHorizontal:12,
 backgroundColor:'black',
+
   },
   price: {
     fontSize: 22,
