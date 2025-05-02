@@ -8,6 +8,9 @@ const Home = ({navigation}: any) => {
 const [borderColor, setBorderColor] = React.useState('green');
 // below click which box use id identify which box is selected
 const [selectedIDs, setSelectedIDs] = React.useState<string[]>([]);
+
+// const [activeID, setActiveID] = React.useState(undefined);
+
 // we need function take id that we click on and put in selectedIDs
 const changeBorderColorFunc = (id: string) => {
   if (selectedIDs.includes(id)) {
@@ -15,8 +18,18 @@ const changeBorderColorFunc = (id: string) => {
   } else {
     setSelectedIDs([...selectedIDs, id]);
   }
+
 }
 
+//step 1 disable
+// const itemIDsVar = data.flatMap((item: any) => item.id);
+//  console.log('itemIDsVar', itemIDsVar);
+
+//  const disableOtherIDs = (id: string) => {
+//    const newIDs = itemIDsVar.filter(item => item !== id);
+//    setActiveID(id) as any
+//    setSelectedIDs(newIDs);
+//  }
 
   return (
     <View>
@@ -34,10 +47,12 @@ const changeBorderColorFunc = (id: string) => {
             subtitleProp={item.subtitle}
             offerList={item.text}
             priceProp={item.price}
-            changeBorderColorFunc={() =>
+            changeBorderColorFuncProp={() =>
            changeBorderColorFunc(item.id)
+          // disableOtherIDs(item.id)
               
             }
+          
             selected={selectedIDs.includes(item.id)}
             //slected from smallbox component  and
             // when click it will put id in selectedIDs so btn change color to ornage

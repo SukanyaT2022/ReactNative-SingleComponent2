@@ -14,8 +14,9 @@ interface singleBoxProp {
   priceProp: number;
   offerList: string[];
   imageProp: ImageSourcePropType;
-  changeBorderColorFunc: () => void;
+  changeBorderColorFuncProp: () => void;
   selected?: boolean;
+  disabledProp?: boolean;
 }
 const SmallBox = ({
   titleprop,
@@ -23,8 +24,9 @@ const SmallBox = ({
   priceProp,
   offerList,
   imageProp,
-changeBorderColorFunc,
+changeBorderColorFuncProp,
 selected = false,
+disabledProp = false
 }: singleBoxProp) => {
 
 
@@ -51,8 +53,8 @@ selected = false,
           <Text style={{fontSize: 14}}> /rental</Text>
         </Text>
         <TouchableOpacity
-        onPress={changeBorderColorFunc}
-        // disabled={selected}
+        onPress={changeBorderColorFuncProp}
+        disabled={disabledProp}
         style={[styles.wrapIconAddTextBtn, selected && {backgroundColor:'orange'}]}>
           <Icon name="rocket" size={25} color="#900"/>
           <Text style={styles.addText}>Add</Text>
