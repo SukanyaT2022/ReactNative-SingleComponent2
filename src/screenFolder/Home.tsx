@@ -9,6 +9,8 @@ const [borderColor, setBorderColor] = React.useState('green');
 // below click which box use id identify which box is selected
 const [selectedIDs, setSelectedIDs] = React.useState<string[]>([]);
 
+const [selectedOneID, setSelectedOneID] = React.useState<string | null>(null);
+
 // const [activeID, setActiveID] = React.useState(undefined);
 
 // we need function take id that we click on and put in selectedIDs
@@ -30,6 +32,10 @@ const changeBorderColorFunc = (id: string) => {
 //    setActiveID(id) as any
 //    setSelectedIDs(newIDs);
 //  }
+const handleOnPress =(id:string)=>{
+  //below line work on select and deselect
+setSelectedOneID((prev)=>prev === id ? null: id)
+}
 
   return (
     <View>
@@ -40,15 +46,17 @@ const changeBorderColorFunc = (id: string) => {
       <FlatList
         data={data}
         keyExtractor={(item: any) => item.id}
-        renderItem={({item}: any) => (
-          <SmallBox
+        renderItem={({item}: any) => {
+
+        
+          return <SmallBox
             titleprop={item.title}
             imageProp={item.image}
             subtitleProp={item.subtitle}
             offerList={item.text}
             priceProp={item.price}
             changeBorderColorFuncProp={() =>
-           changeBorderColorFunc(item.id)
+           handleOnPress(item.id)
           // disableOtherIDs(item.id)
               
             }
@@ -58,10 +66,14 @@ const changeBorderColorFunc = (id: string) => {
             // when click it will put id in selectedIDs so btn change color to ornage
             
           />
-
-        )}
+            
+}
+}
+// close flatlist
       />
+      // close main view
     </View>
+    // close return
   );
 };
 

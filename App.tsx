@@ -28,15 +28,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screenFolder/Home';
 import Contact from './src/screenFolder/Contact';
-
-
-
-
+import Practice from './src/screenFolder/Practice';
 
 const Stack = createNativeStackNavigator();
 export const screen = {
  home: 'Home',
- contactScreen: 'Contact'
+ contactScreen: 'Contact',
+practiceScreen: 'Practice'
 }
 function App(){
  
@@ -44,8 +42,10 @@ function App(){
 
     <NavigationContainer>
 <Stack.Navigator initialRouteName={screen.home}>
+{/* <Stack.Navigator initialRouteName={screen.practiceScreen}> */}
 <Stack.Screen name = {screen.home} component={Home}/>
 <Stack.Screen name = {screen.contactScreen} component={Contact}/>
+<Stack.Screen name = {screen.practiceScreen} component={Practice}/>
 </Stack.Navigator>
 
 
