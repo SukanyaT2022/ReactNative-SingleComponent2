@@ -29,23 +29,27 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screenFolder/Home';
 import Contact from './src/screenFolder/Contact';
 import Practice from './src/screenFolder/Practice';
+import BoolCompMainScreen from './src/screenFolder/BoolCompMainScreen';
 
 const Stack = createNativeStackNavigator();
 export const screen = {
  home: 'Home',
  contactScreen: 'Contact',
-practiceScreen: 'Practice'
+practiceScreen: 'Practice',
+boolCompMainScreen: 'BoolCompMainScreen',
 }
 function App(){
  
   return (
 
     <NavigationContainer>
-<Stack.Navigator initialRouteName={screen.home}>
+{/* <Stack.Navigator initialRouteName={screen.home}> */}
+<Stack.Navigator initialRouteName={screen.boolCompMainScreen}>
 {/* <Stack.Navigator initialRouteName={screen.practiceScreen}> */}
 <Stack.Screen name = {screen.home} component={Home}/>
 <Stack.Screen name = {screen.contactScreen} component={Contact}/>
 <Stack.Screen name = {screen.practiceScreen} component={Practice}/>
+<Stack.Screen name = {screen.boolCompMainScreen} component={BoolCompMainScreen}/>
 </Stack.Navigator>
 
 
