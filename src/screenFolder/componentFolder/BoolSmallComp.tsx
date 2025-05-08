@@ -3,19 +3,19 @@ import React, {useState} from 'react';
 interface BoolCompProp {
   text: string;
   buttonTextProp: string;
-  disable: boolean;
+  disableProp: boolean;
   selectdProp: boolean;
-  handleFuncProp: ()=>void
+  handleFuncProp: (selected: boolean) => void
 }
 
-const BoolSmallComp = ({ handleFuncProp, text, buttonTextProp, disable,  selectdProp,}:BoolCompProp) => {
+const BoolSmallComp = ({ handleFuncProp, text, buttonTextProp, disableProp,  selectdProp,}:BoolCompProp) => {
 
   return (
     <View style={[styles.main, selectdProp && {borderColor: 'red'}]}>
       <Text>{text}</Text>
       <TouchableOpacity
-        onPress={handleFuncProp}
-        // disabled = {selected}
+        onPress={()=>handleFuncProp(!selectdProp)}
+        disabled= {disableProp}
         style={styles.btn}>
         <Text>{buttonTextProp}</Text>
       </TouchableOpacity>

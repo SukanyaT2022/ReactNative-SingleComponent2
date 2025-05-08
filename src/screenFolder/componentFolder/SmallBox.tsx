@@ -31,16 +31,19 @@ disabledProp = false
 
 
   return (
-    <View style={[styles.main, selected && {borderColor: 'orange'}]}>
+    <View style={[
+      styles.main,
+      selected ? styles.selectedBox : styles.unselectedBox
+    ]}>
       <View style={styles.wrapTitleImage}>
-      <Text style={styles.title}>{titleprop}</Text>
-      <Image source={imageProp} style={{width:50, height:50}}/>
+        <Text style={styles.title}>{titleprop}</Text>
+        <Image source={imageProp} style={{width:50, height:50}}/>
       </View>
       <Text style={styles.subtitle}>{subtitleProp}</Text>
      
       {offerList.map((item, index) => {
         return (
-          <View style={styles.wrapIconText} key={index}>
+          <View style={styles.wrapIconText} key={`offer-${item}-${index}`}>
             <Icon name="rocket" size={25} color="#900" />
             <Text>{item}</Text>
           </View>
@@ -53,11 +56,14 @@ disabledProp = false
           <Text style={{fontSize: 14}}> /rental</Text>
         </Text>
         <TouchableOpacity
-        onPress={changeBorderColorFuncProp}
-        disabled={disabledProp}
-        style={[styles.wrapIconAddTextBtn, selected && {backgroundColor:'orange'}]}>
-          <Icon name="rocket" size={25} color="#900"/>
-          <Text style={styles.addText}>Add</Text>
+          onPress={changeBorderColorFuncProp}
+          disabled={disabledProp}
+          style={[
+            styles.wrapIconAddTextBtn,
+            selected ? styles.selectedButton : styles.unselectedButton
+          ]}>
+          <Icon name="rocket" size={25} color={selected ? "white" : "#900"}/>
+          <Text style={[styles.addText, selected && {color: 'white'}]}>Add</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -69,15 +75,22 @@ export default SmallBox;
 const styles = StyleSheet.create({
   main: {
     borderWidth: 2,
-    borderColor: 'green',
     padding: 20,
     gap: 10,
     borderRadius: 20,
     marginVertical: 20,
   },
+  selectedBox: {
+    borderColor: 'orange',
+    borderWidth: 3,
+  },
+  unselectedBox: {
+    borderColor: 'green',
+    borderWidth: 2,
+  },
   wrapTitleImage:{
-flexDirection:'row',
-justifyContent:'space-between',
+    flexDirection:'row',
+    justifyContent:'space-between',
   },
   wrapIconText: {
     flexDirection: 'row',
@@ -102,13 +115,18 @@ justifyContent:'space-between',
   wrapIconAddTextBtn: {
     flexDirection: 'row',
     gap: 5,
-borderWidth:2,
-borderColor:'green',
-borderRadius:30,
-paddingVertical:7,
-paddingHorizontal:12,
-backgroundColor:'black',
-
+    borderWidth: 2,
+    borderRadius: 30,
+    paddingVertical: 7,
+    paddingHorizontal: 12,
+  },
+  selectedButton: {
+    backgroundColor: 'orange',
+    borderColor: 'orange',
+  },
+  unselectedButton: {
+    backgroundColor: 'black',
+    borderColor: 'green',
   },
   price: {
     fontSize: 22,
@@ -117,8 +135,6 @@ backgroundColor:'black',
   addText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color:'white',
-  
+    color: 'white',
   },
-
 });
