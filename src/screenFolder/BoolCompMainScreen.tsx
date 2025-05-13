@@ -25,6 +25,7 @@ data && data.map((item, index)=>{
   // disable = {false}
   selectdProp = {selected}
 handleFuncProp = {()=>handleFunc(item.id)}
+ //this line do disable btn
 disableProp = {disableItem as any} 
   />
 })

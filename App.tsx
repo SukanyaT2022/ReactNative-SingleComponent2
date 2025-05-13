@@ -31,6 +31,7 @@ import Contact from './src/screenFolder/Contact';
 import Practice from './src/screenFolder/Practice';
 import BoolCompMainScreen from './src/screenFolder/BoolCompMainScreen';
 import MainBax3 from './src/screenFolder/MainBax3';
+import MainBox4 from './src/screenFolder/MainBox4';
 
 const Stack = createNativeStackNavigator();
 export const screen = {
@@ -39,6 +40,7 @@ export const screen = {
 practiceScreen: 'Practice',
 boolCompMainScreen: 'BoolCompMainScreen',
 mainBax3: 'MainBax3',
+mainBox4: 'MainBox4',
 }
 function App(){
  
@@ -47,13 +49,14 @@ function App(){
     <NavigationContainer>
 {/* <Stack.Navigator initialRouteName={screen.home}> */}
 {/* <Stack.Navigator initialRouteName={screen.boolCompMainScreen}> */}
-<Stack.Navigator initialRouteName={screen.mainBax3}>
+<Stack.Navigator initialRouteName={screen.mainBox4}>
 {/* <Stack.Navigator initialRouteName={screen.practiceScreen}> */}
 <Stack.Screen name = {screen.home} component={Home}/>
 <Stack.Screen name = {screen.contactScreen} component={Contact}/>
 <Stack.Screen name = {screen.practiceScreen} component={Practice}/>
 <Stack.Screen name = {screen.boolCompMainScreen} component={BoolCompMainScreen}/>
 <Stack.Screen name = {screen.mainBax3} component={MainBax3}/>
+<Stack.Screen name = {screen.mainBox4} component={MainBox4}/>
 </Stack.Navigator>
 
 

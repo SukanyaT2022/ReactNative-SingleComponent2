@@ -8,28 +8,28 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
+
 interface singleBoxProp {
   titleprop: string;
   subtitleProp: string;
-  priceProp: number;
+  priceProp: string;
   offerList: string[];
   imageProp: ImageSourcePropType;
   changeBorderColorFuncProp: () => void;
   selected?: boolean;
   disabledProp?: boolean;
 }
+
 const SmallBox = ({
   titleprop,
   subtitleProp,
   priceProp,
   offerList,
   imageProp,
-changeBorderColorFuncProp,
-selected = false,
-disabledProp = false
+  changeBorderColorFuncProp,
+  selected = false,
+  disabledProp = false
 }: singleBoxProp) => {
-
-
   return (
     <View style={[
       styles.main,
