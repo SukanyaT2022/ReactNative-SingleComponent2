@@ -1,6 +1,6 @@
 import { Image, ImageSourcePropType, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-// import {data} from '../constantData/data.ts'
+
 
 interface SmallBox4Prop{
   title: string;
@@ -9,6 +9,7 @@ interface SmallBox4Prop{
   textBtnProp: string;
   selectedProp: boolean;
   handleFuncProp: () => void;
+  disableProp?: boolean;
 }
 
 const SmallBoxComp4 = ({
@@ -17,22 +18,26 @@ const SmallBoxComp4 = ({
   imageProp, 
   textBtnProp, 
   selectedProp,
-  handleFuncProp
+  handleFuncProp,
+  disableProp,
 }: SmallBox4Prop) => {
   const changeBordoerColorFunc = () => {
 
   }
+  
   return (
     <View style={[
       styles.main, 
-      selectedProp && styles.selectedBox
+      disableProp && styles.selectedBox
     ]}>
       <Text>SmallBoxComp4</Text>
       <Text>{title}</Text>
       <Text>{subtitle}</Text>
       <Image source={imageProp} style={{width:50, height:50}}/>
-      <TouchableOpacity onPress={handleFuncProp}>
-        <Text>{textBtnProp}</Text>
+      <TouchableOpacity 
+      onPress={handleFuncProp}
+      disabled={disableProp}>
+        <Text style = {[styles.btnstyle, disableProp && styles.changeColorClickBtn]}>{textBtnProp}</Text>
       </TouchableOpacity>
     </View>
   )
@@ -43,31 +48,41 @@ export default SmallBoxComp4
 const styles = StyleSheet.create({
   main:{
     borderColor: 'gray',
-    borderWidth: 2,
+    borderWidth: 1,
     padding: 10,
     margin: 10,
     backgroundColor: 'white',
-    // Shadow for iOS
-    shadowColor: '#000',
+    // Matching box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px
+    shadowColor: 'rgba(0, 0, 0, 0.35)',
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 5,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    // Shadow for Android
-    elevation: 5,
+    shadowOpacity: 1,
+    shadowRadius: 15,
+    // For Android
+    elevation: 8,
   },
   selectedBox: {
     borderColor: 'red',
-    // Enhanced shadow when selected
-    shadowColor: 'red',
+    // Smoother enhanced shadow when selected
+    shadowColor: 'rgba(0, 0, 0, 0.35)',
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 5,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
+    shadowOpacity: 1,
+    shadowRadius: 15,
     elevation: 8,
+  },
+  btnstyle:{
+    backgroundColor: 'blue',
+    color: 'white',
+    padding: 10,
+    textAlign: 'center',
+    borderRadius: 5,
+  },
+  changeColorClickBtn:{
+    backgroundColor: 'lightblue',
   }
 })
