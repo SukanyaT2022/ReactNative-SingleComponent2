@@ -7,17 +7,22 @@ interface SmallBox5Prop{
     btnTextProp: string;
     selectedProp?: boolean;
     handleFuncProp?: ()=> void;
+    disabledProp?: boolean;
 }
 const SmallBoxComp5 = ({titleProp, subtitleProp, 
-    btnTextProp, selectedProp, handleFuncProp}:SmallBox5Prop) => {
+    btnTextProp, selectedProp, handleFuncProp, disabledProp}:SmallBox5Prop) => {
   return (
-    <View style={[styles.main, selectedProp && styles.changeBorderColor]}>
+    <View style={[styles.main, disabledProp && styles.changeBorderColor]}>
       <Text>SmallBoxComp5</Text>
       <Text >{titleProp}</Text>
       <Text>{subtitleProp}</Text>
       <TouchableOpacity
-      style ={styles.btnstyle}
-      onPress={handleFuncProp}>
+      style ={[styles.btnstyle, selectedProp && styles.changeColorBtn]}
+      disabled={disabledProp}
+      onPress={handleFuncProp}
+
+      >
+
       <Text>{btnTextProp}</Text>  
       </TouchableOpacity>
     </View>
@@ -36,5 +41,8 @@ btnstyle:{
 },
 changeBorderColor:{
     borderColor: 'red',
+},
+changeColorBtn:{
+  backgroundColor: 'blue',
 }
 })

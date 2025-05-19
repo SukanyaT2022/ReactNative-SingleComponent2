@@ -28,16 +28,27 @@ const SmallBoxComp4 = ({
   return (
     <View style={[
       styles.main, 
-      disableProp && styles.selectedBox
+      selectedProp && styles.selectedBox
     ]}>
       <Text>SmallBoxComp4</Text>
       <Text>{title}</Text>
       <Text>{subtitle}</Text>
       <Image source={imageProp} style={{width:50, height:50}}/>
       <TouchableOpacity 
-      onPress={handleFuncProp}
-      disabled={disableProp}>
-        <Text style = {[styles.btnstyle, disableProp && styles.changeColorClickBtn]}>{textBtnProp}</Text>
+        onPress={handleFuncProp}
+        disabled={disableProp}
+        style={[
+          styles.btnContainer,
+          selectedProp && styles.selectedButton,
+          disableProp && styles.disabledButton
+        ]}>
+        <Text style={[
+          styles.btnText,
+          selectedProp && styles.selectedButtonText,
+          disableProp && styles.disabledButtonText
+        ]}>
+          {textBtnProp}
+        </Text>
       </TouchableOpacity>
     </View>
   )
@@ -75,14 +86,28 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     elevation: 8,
   },
-  btnstyle:{
+  btnContainer: {
     backgroundColor: 'blue',
-    color: 'white',
     padding: 10,
-    textAlign: 'center',
     borderRadius: 5,
+    alignItems: 'center',
   },
-  changeColorClickBtn:{
-    backgroundColor: 'lightblue',
+  selectedButton: {
+    backgroundColor: 'orange',
+  },
+  disabledButton: {
+    backgroundColor: 'gray',
+    opacity: 0.5,
+  },
+  btnText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  selectedButtonText: {
+    color: 'white',
+  },
+  disabledButtonText: {
+    color: 'white',
   }
 })
