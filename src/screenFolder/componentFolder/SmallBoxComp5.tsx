@@ -17,7 +17,7 @@ const SmallBoxComp5 = ({titleProp, subtitleProp,
       <Text >{titleProp}</Text>
       <Text>{subtitleProp}</Text>
       <TouchableOpacity
-      style ={[styles.btnstyle, selectedProp && styles.changeColorBtn]}
+      style ={[styles.btnstyle, selectedProp && styles.changeColorSelectStyle, disabledProp && styles.btnstyle]}
       disabled={disabledProp}
       onPress={handleFuncProp}
 
@@ -42,7 +42,8 @@ btnstyle:{
 changeBorderColor:{
     borderColor: 'red',
 },
-changeColorBtn:{
+changeColorSelectStyle:{
   backgroundColor: 'blue',
+  
 }
 })
