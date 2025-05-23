@@ -1,24 +1,52 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import SmallBox6 from './componentFolder/SmallBox6'
-const dogone = require('./assets/images/imgDog1.jpg')
+import { data } from './constantData/data'
+
 const MainBox6 = () => {
-  const [selected, setSelected] = useState(false)
+  const [selectedID, setSelectedID] = useState<string | null>(null)
 
-  const handleSelectionFunc = () => {
-    setSelected(!selected)
+  const handleSelectionFunc = (id: string) => {
+    setSelectedID(prev => prev === id ? null : id)
   }
-
+  return (
+    <View style={{ flex: 1 }}>
+      <ScrollView>
+        {data && data.map((item, index) => {
+          const disableVar = selectedID && selectedID !== item.id;
+          return (
+            <SmallBox6
+              key={index}
+              titleProp={item.title}
+              subtitleProp={item.subtitle}
+              imageProp={item.image}
+              handleFuncProp={() => handleSelectionFunc(item.id)}
+              btnTextProp="click me"
+              selectProp={selectedID === item.id}
+              disabledProp={disableVar}
+            />
+          )
+        })}
+      </ScrollView>
+    </View>
+  )
   return (
     <View>
-      <SmallBox6
-        titleProp="title"
-        subtitleProp="subtitle"
-        imageProp={dogone}
-        handleFuncProp={handleSelectionFunc}
-        btnTextProp="click me"
-        selectProp={selected}
-      />
+      {data && data.map((item, index) => {
+        const disableVar = selectedID && selectedID !== item.id;
+        return (
+          <SmallBox6
+            key={index}
+            titleProp={item.title}
+            subtitleProp={item.subtitle}
+            imageProp={item.image}
+            handleFuncProp={() => handleSelectionFunc(item.id)}
+            btnTextProp="click me"
+            selectProp={selectedID === item.id}
+            disabledProp={disableVar}
+          />
+        )
+      })}
     </View>
   )
 }

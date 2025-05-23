@@ -49,8 +49,6 @@ data && data.map((item, index) => {
       })}
     
     </View>
-
-
     )
 
 }

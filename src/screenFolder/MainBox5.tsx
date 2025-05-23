@@ -1,12 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import SmallBoxComp5 from './componentFolder/SmallBoxComp5'
 import {data} from './constantData/data'
 
-
-
 const MainBox5 = () => {
-    const [selected, setSelected] = React.useState(false)
+const [selected, setSelected] = React.useState(false)
 const [selectID, setSelectedID] = React.useState<string | null>(null)
 const handleChangeColorDisableFunc = (id:string) => {
   console.log("id", id)
@@ -14,8 +12,7 @@ setSelectedID(prev => prev === id ? null : id)
 setSelected(!selected)
     }
   return (
-    <View>
-
+    <ScrollView>
       {
 data && data.map((item, index) => {
   const disableVariable:boolean = selectID && selectID !== item.id;
@@ -29,10 +26,8 @@ data && data.map((item, index) => {
     disabledProp={disableVariable as any} // Pass the disable variable
   />
 })
-      }
-
-     
-    </View>
+      } 
+    </ScrollView>
   )
 }
 

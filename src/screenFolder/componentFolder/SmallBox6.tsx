@@ -8,7 +8,7 @@ interface Box6prop {
   handleFuncProp: () => void;
   btnTextProp: string;
   selectProp: boolean;
-
+  disabledProp?: boolean;
 }
 
 const SmallBox6 = ({
@@ -18,8 +18,10 @@ const SmallBox6 = ({
   btnTextProp,
   selectProp,
   imageProp,
+  disabledProp,
 }: Box6prop) => {
   return (
+
     <View style={[styles.main, selectProp && styles.changeBorderColorStyle]}>
       <Text>MainBox6</Text>
       <Text>{titleProp}</Text>
@@ -30,7 +32,8 @@ const SmallBox6 = ({
       />
       <TouchableOpacity 
         onPress={handleFuncProp}
-        style={[styles.btnstyle, selectProp && styles.btnChangeColorStyle]}
+        disabled={disabledProp}
+        style={[styles.btnstyle, selectProp && styles.btnChangeColorStyle, disabledProp && styles.btnstyle]}
       >
         <Text style={styles.btnText}>{btnTextProp}</Text>
       </TouchableOpacity>
